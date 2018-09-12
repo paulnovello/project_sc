@@ -22,27 +22,8 @@ import numpy as np
 from prednet import PredNet
 from data_utils import SequenceGenerator
 
-#%%
-numframes = 10000
-comp = 250
-img = Image.open("Utr-GFP dataset 3.tif")
-height = img.size[0]
-width = img.size[1]
-imgArray = np.zeros( ( numframes, height, width  ) )
-frame = 0
-try:
-    while 1:
-        img.seek( frame )
-        imgArray[frame,:,:] = img
-        frame = frame + 1
-except EOFError:
-    img.seek( 0 )
-    pass
-
-movArray = np.zeros((250,height,width))
-for i in range(250):
-    movArray[i,:,:] = imgArray[numframes//250*i,:,:]
-#%%
+#%% Before training the network, please use generate_video.py sections
+#   on the same iPython console to create the object "movArray"
 
 dim = movArray.shape[1]
 
@@ -94,7 +75,8 @@ callbacks = [LearningRateScheduler(lr_schedule)]
 history = model.fit_generator(train_generator, samples_per_epoch / batch_size, nb_epoch, callbacks=callbacks,
                 validation_data=val_generator, validation_steps=N_seq_val / batch_size)
 
-#%%
+#%% Compute the predictions for test data
+
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -116,7 +98,8 @@ test_generator = SequenceGenerator(test_file, nt, batch_size=batch_size, N_seq=N
 X_test = test_generator.create_all()
 X_hat = test_model.predict(X_test, batch_size)
 
-#%%
+#%% Plot the predictions
+
 aspect_ratio = float(X_hat.shape[2]) / X_hat.shape[3]
 plt.figure(figsize = (20, 20*aspect_ratio))
 gs = gridspec.GridSpec(2, nt)
@@ -140,16 +123,8 @@ for k in range(5):
             
     plt.show()
     
-#%%
 
-plt.figure(figsize=(10, 10))
-for t in range(nt):
-    plt.subplot(gs[t])
-    plt.imshow(movArray[t], interpolation='none')
-    plt.tick_params(axis='both', which='both', bottom='off', top='off', left='off', right='off', labelbottom='off', labelleft='off')
-    
-plt.show()
-#%%
+#%% Compute the average accuracy
 
 mse_model = np.mean( (X_test[:, 1:] - X_hat[:, 1:])**2 )  # look at all timesteps except the first
 mse_prev = np.mean( (X_test[:, :-1] - X_test[:, 1:])**2 )
