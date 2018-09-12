@@ -155,10 +155,3 @@ mse_model = np.mean( (X_test[:, 1:] - X_hat[:, 1:])**2 )  # look at all timestep
 mse_prev = np.mean( (X_test[:, :-1] - X_test[:, 1:])**2 )
 (mse_prev - mse_model)/mse_prev
 
-
-#%%
-
-plt.plot(x,y, linestyle='-', marker='o')
-plt.ylabel("accuracy")
-plt.xlabel("sigma")
-plt.ylim([0,1])
