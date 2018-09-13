@@ -1,4 +1,4 @@
-### Applications of Neural Networks for Unsupervised Representation Learning
+# Applications of Neural Networks for Unsupervised Representation Learning
 
 The scripts are partitioned into boxes that have to be executed one by one. 
 Thus it is easier to inspect the different intermediate objects of the computations.
@@ -8,18 +8,18 @@ Thus it is easier to inspect the different intermediate objects of the computati
 First of all, the user will have to generate a data file with generate_squares.py, because the size of the obtained
 dataset is too large to be uploaded on github.
 
-# Autoencoders
+### Autoencoders
 
 In Autoencoders.py, there are two sets of boxes, one for training and applying the autoencoder, and the other for the classifier. 
 Each box is labelled in order to know in what case it has to be executed.
 
-# GANs
+### GANs
 
 In dcgan.py, generated images will be created in the directory /images throughout the training.
 Then, manipulations can be performed with the code contained in the following boxes.
 The code is greatly inspired from https://github.com/eriklindernoren/Keras-GAN/tree/master/dcgan
 
-# SDGANs
+### SDGANs
 
 In sdgan.py, you will find a very similar code to dcgan.py, except that there is no manipulation boxes since the results
 of the training are not satisfying.
