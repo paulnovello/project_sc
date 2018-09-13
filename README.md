@@ -22,7 +22,7 @@ The code is greatly inspired from https://github.com/eriklindernoren/Keras-GAN/t
 ### SDGANs
 
 In sdgan.py, you will find a very similar code to dcgan.py, except that there is no manipulation boxes since the results
-of the training are not satisfying.
+of the training are not satisfying. These can be found in /imagesSD
 
 ## Application 2
 
