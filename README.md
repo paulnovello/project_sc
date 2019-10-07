@@ -1,10 +1,10 @@
 # Applications of Neural Networks for Unsupervised Representation Learning
 
-The scripts are partitioned into boxes that have to be executed one by one. Thus it is easier to inspect the different intermediate objects of the computations.
+The scripts are partitioned into boxes that have to be executed one by one, so that it is easier to inspect the different intermediate objects of the computations.
 
 ## Application 1
 
-First of all, the user will have to generate a data file with generate_squares.py, because the size of the obtained dataset is too large to be uploaded on github.
+The user will have to generate a data file with generate_squares.py, because the size of the obtained dataset is too large to be uploaded on github.
 
 ### Autoencoders
 
